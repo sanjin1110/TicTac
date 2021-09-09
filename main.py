@@ -29,3 +29,10 @@ def button(frame):  # Function to define a button
                relief = "sunken", bd = 5)
     return b
 
+
+def change_a():  # Function to change the operand for the next player
+    global a
+    for i in ['O', 'X']:
+        if not (i == a):
+            a = i
+            break
