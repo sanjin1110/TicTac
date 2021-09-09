@@ -22,3 +22,10 @@ name_entry2.grid(row = 4, column = 1, columnspan = 20)
 
 score1 = 0
 score2 = 0
+
+
+def button(frame):  # Function to define a button
+    b = Button(frame, padx = 1, bg = "papaya whip", width = 3, text = "", font = ('arial', 40, 'bold'),
+               relief = "sunken", bd = 5)
+    return b
+
