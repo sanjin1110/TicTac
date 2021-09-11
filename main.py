@@ -36,3 +36,14 @@ def change_a():  # Function to change the operand for the next player
         if not (i == a):
             a = i
             break
+
+
+def reset():  # Resets the game
+    global a
+    for i in range(3):
+        for j in range(3):
+            b[i][j]["text"] = " "
+            b[i][j]["state"] = NORMAL
+    a = r.choice(['O', 'X'])
+
+
