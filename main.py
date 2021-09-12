@@ -66,3 +66,10 @@ def check():  # Checks for victory or Draw
         messagebox.showinfo("Tied!!", "The match ended in a draw")
         reset()
 
+
+def click(row, col):  # Next players turn
+    b[row][col].config(text = a, state = DISABLED, disabledforeground = colour[a])
+    check()
+    change_a()
+    label.config(text = a + " 's Chance")
+
