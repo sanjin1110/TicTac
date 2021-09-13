@@ -73,3 +73,36 @@ def click(row, col):  # Next players turn
     change_a()
     label.config(text = a + " 's Chance")
 
+
+def main():  # Main Program
+    root = Toplevel()  # Window defined
+    root.title("Tic-Tac-Toe")
+    root.geometry('336x410')
+    root.resizable(0, 0)
+    root.iconbitmap("iconn.ico")
+    global a
+    global b
+    global colour
+    global label
+    a = r.choice(['O', 'X'])  # Two operators defined
+    colour = {'O': "deep sky blue", 'X': "lawn green"}
+    b = [[], [], []]
+    for i in range(3):
+        for j in range(3):
+            b[i].append(button(root))
+            b[i][j].config(command = lambda row=i, col=j: click(row, col))
+            b[i][j].grid(row = i, column = j)
+    label = Label(root, text = a + "'s Chance", font = ('arial', 10, 'bold'))
+    label.grid(row = 3, column = 0, columnspan = 3)
+    score_label = Label(root, text = name_entry1.get() + ' ' + 'score:' + str(score1), font = ('arial', 10, 'bold'))
+    score_label.grid(row = 5, column = 0, columnspan = 3)
+    score_label = Label(root, text = name_entry2.get() + ' ' + 'score:' + str(score2), font = ('arial', 10, 'bold'))
+    score_label.grid(row = 6, column = 0, columnspan = 3)
+    root.mainloop()
+
+
+game_page = Button(top, text = 'SAVE', command = main, font = ("Helvetica", 10, 'bold'),
+                   bg = "dark orchid", fg = "white")
+game_page.grid(row = 8, column = 1)
+
+top.mainloop()
