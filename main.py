@@ -5,6 +5,8 @@ import random as r
 top = Tk()
 top.geometry('336x410')
 top.resizable(0, 0)
+top.title("Login")
+top.iconbitmap("login.ico")
 top.configure(bg = "lightblue1")
 bef = Label(top, text = 'BEFORE ENTERING THE GAME', font = ("Helvetica", 10, 'bold'),
             bg = "lightblue1",fg = "indianred2")
@@ -12,7 +14,7 @@ ore = Label(top, text = 'PLEASE MENTION ....', font = ("Helvetica", 10, 'bold'),
 bef.grid(row = 1, column = 1)
 ore.grid(row = 2, column = 1)
 name = Label(top, text = "Player 1:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
-name.grid(row = 3, column = 0)
+name.grid(row = 3, column = 0,pady = 10)
 name_entry1 = Entry(top, width = 30)
 name_entry1.grid(row = 3, column = 1, columnspan = 10, pady = 10)
 name2 = Label(top, text = "Player 2:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
@@ -39,8 +41,6 @@ r2.grid(row = 7, column = 1, ipady = 5)
 r3 = Radiobutton(top, text = 'female', value = 2, variable = var, bg = "lavender", fg = "black")
 r3.grid(row = 7, column = 2, ipady = 5)
 
-r1 = Checkbutton(top, text = 'I accept Terms Of Use & Privacy Policy', bg = "lavender", fg = "black")
-r1.grid(row = 8, column = 1, columnspan = 10, ipady = 5)
 score1 = 0
 score2 = 0
 
@@ -134,13 +134,16 @@ def link():  # save user information in file
     nam2 = name_entry2.get()
     em = email_entry.get()
     pw = password_entry.get()
-    with open("abc.txt ", "a") as file_object:
+    with open("scoreboard.txt", "a") as file_object:
         file_object.writelines(["player1=" + nam + "\t","player2=" + nam2 + "\t",
-                                "email=" + em + "\t", "password=" + pw + "\t"])
+                                "email=" + em + "\t", "password=" + pw + "\n"])
 
 
-game_page = Button(top, text = 'SAVE INFO', command = main, font = ("Helvetica", 10, 'bold'),
+game_page = Button(top, text = 'SAVE INFO', command = link, font = ("Helvetica", 10, 'bold'),
                    bg = "dark orchid", fg = "white")
 game_page.grid(row = 9, column = 1)
+game_page = Button(top, text = 'New Game', command = main, font = ("Helvetica", 10, 'bold'),
+                   bg = "dark orchid", fg = "white")
+game_page.grid(row = 11, column = 1,rowspan=5)
 
 top.mainloop()
