@@ -46,8 +46,8 @@ score2 = 0
 
 
 def button(frame):  # Function to define a button
-    b = Button(frame, padx = 1, bg = "papaya whip", width = 3, text = "", font = ('arial', 40, 'bold'),
-               relief = "ridge", bd = 5)
+    b = Button(frame, padx = 1, bg = "alice blue", width = 3, text = "", font = ('arial', 40, 'bold'),
+               relief = "sunken", bd = 5)
     return b
 
 
@@ -61,11 +61,14 @@ def change_a():  # Function to change the operand for the next player
 
 def reset():  # Resets the game
     global a
-    for i in range(3):
-        for j in range(3):
-            b[i][j]["text"] = " "
-            b[i][j]["state"] = NORMAL
-    a = r.choice(['O', 'X'])
+    try:
+        for i in range(3):
+            for j in range(3):
+                b[i][j]["text"] = " "
+                b[i][j]["state"] = NORMAL
+        a = r.choice(['O', 'X'])
+    except ReferenceError:
+        print("restart the game")
 
 
 def check():  # Checks for victory or Draw
@@ -98,15 +101,14 @@ def click(row, col):  # Next players turn
     b[row][col].config(text = a, state = DISABLED, disabledforeground = colour[a])
     check()
     change_a()
-    label.config(text = a + " 's Chance", font = ("Helvetica", 10, 'bold'), bg ="lightblue1")
+    label.config(text = a + " 's Chance", font = ("Helvetica", 10, 'bold'))
 
 
 def main():  # Main Program
-
     root = Toplevel()  # Window defined
     root.title("Tic-Tac-Toe")
     root.geometry('336x415')
-    root.configure(bg = "lightblue1")
+    root.configure(bg = "alice blue")
     root.resizable(0, 0)
     root.iconbitmap("icon.ico")
     global a
@@ -114,18 +116,20 @@ def main():  # Main Program
     global colour
     global label
     a = r.choice(['O', 'X'])  # Two operators defined
-    colour = {'O': "deep sky blue", 'X': "lawn green"}
+    colour = {'O': "gold", 'X': "lawn green"}
     b = [[], [], []]
     for i in range(3):
         for j in range(3):
             b[i].append(button(root))
             b[i][j].config(command = lambda row=i, col=j: click(row, col))
             b[i][j].grid(row = i, column = j)
-    label = Label(root, text = a + "'s Chance", font = ('helvetica', 10, 'bold'))
+    label = Label(root, text = a + "'s Chance", font = ('helvetica', 10, 'bold'), bg ="alice blue")
     label.grid(row = 3, column = 0, columnspan = 3)
-    score_label = Label(root, text = name_entry1.get() + ' ' + 'SCORE:' + str(score1), font = ('Helvetica', 12, 'bold'), bg ="lightblue1")
+    score_label = Label(root, text = name_entry1.get() + ' ' + 'SCORE:' + str(score1),
+                        font = ('Helvetica', 12, 'bold'), bg ="alice blue")
     score_label.grid(row = 5, column = 0, columnspan = 3)
-    score_label = Label(root, text = name_entry2.get() + ' ' + 'SCORE:' + str(score2), font = ('Helvetica', 12, 'bold'), bg ="lightblue1")
+    score_label = Label(root, text = name_entry2.get() + ' ' + 'SCORE:' + str(score2),
+                        font = ('Helvetica', 12, 'bold'), bg ="alice blue")
     score_label.grid(row = 6, column = 0, columnspan = 3)
     root.mainloop()
 
@@ -139,9 +143,9 @@ def link():  # save user information in file
         file_object.writelines(["player1=" + nam + "\t", "player2=" + nam2 + "\t",
                                 "email=" + em + "\t", "password=" + pw + "\n"])
 
-s = Label(top, text = " ",bg = "lightblue1")
+s = Label(top, text = " ", bg = "lightblue1")
 s.grid(row = 9)
-s = Label(top, text = " ",bg = "lightblue1")
+s = Label(top, text = " ", bg = "lightblue1")
 s.grid(row = 11)
 game_page = Button(top, text = 'SAVE INFO', command = link, font = ("Helvetica", 10, 'bold'),
                    bg = "dark orchid", fg = "white")
