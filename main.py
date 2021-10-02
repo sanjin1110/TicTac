@@ -76,11 +76,17 @@ def check():  # Checks for victory or Draw
                 == b[2][i]["text"] == a:
             messagebox.showinfo("Congrats!!", "'" + name_entry1.get() + " ' has won")
             score1 += 1
+            with open("scoreboard.txt ", "a") as file_object:
+                file_object.writelines(name_entry1.get()+" "+"score=" + str(score1) + "\n")
+
             reset()
     if b[0][0]["text"] == b[1][1]["text"] == b[2][2]["text"] == a or b[0][2]["text"] == b[1][1]["text"] \
             == b[2][0]["text"] == a:
         messagebox.showinfo("Congrats!!", "'" + name_entry2.get() + "' has won")
         score2 += 1
+        with open("scoreboard.txt ", "a") as file_object:
+            file_object.writelines(name_entry2.get()+" "+"score=" + str(score1) + "\n")
+
         reset()
     elif b[0][0]["state"] == b[0][1]["state"] == b[0][2]["state"] == b[1][0]["state"] == b[1][1]["state"] \
             == b[1][2]["state"] == b[2][0]["state"] == b[2][1]["state"] == b[2][2]["state"] == DISABLED:
