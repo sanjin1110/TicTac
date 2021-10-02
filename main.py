@@ -11,15 +11,36 @@ bef = Label(top, text = 'BEFORE ENTERING THE GAME', font = ("Helvetica", 10, 'bo
 ore = Label(top, text = 'PLEASE MENTION ....', font = ("Helvetica", 10, 'bold'), bg = "lightblue1",fg = "indianred2")
 bef.grid(row = 1, column = 1)
 ore.grid(row = 2, column = 1)
-name = Label(top, text = "Player 1 Name:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+name = Label(top, text = "Player 1:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
 name.grid(row = 3, column = 0)
 name_entry1 = Entry(top, width = 30)
 name_entry1.grid(row = 3, column = 1, columnspan = 10, pady = 10)
-name2 = Label(top, text = "Player 2 Name:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+name2 = Label(top, text = "Player 2:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
 name2.grid(row = 4, column = 0)
 name_entry2 = Entry(top, width = 30)
 name_entry2.grid(row = 4, column = 1, columnspan = 20)
+email = Label(top, text = "E-mail:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+email.grid(row = 5, column = 0)
+password = Label(top, text = "Password:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+password.grid(row = 6, column = 0)
+gender = Label(top, text = "Gender:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+gender.grid(row = 7, column = 0)
+name_entry1 = Entry(top, width = 30)
+name_entry1.grid(row = 3, column = 1, columnspan = 10, pady = 10)
+name_entry2 = Entry(top, width=30)
+name_entry2.grid(row=4,column=1, columnspan = 10, pady = 10)
+email_entry = Entry(top, width = 30)
+email_entry.grid(row = 5, column = 1, columnspan = 10, pady = 10)
+password_entry = Entry(top, width = 30, show ="*")
+password_entry.grid(row = 6, column = 1, columnspan = 10, pady = 10)
+var = IntVar()
+r2 = Radiobutton(top, text = 'male', value = 1, variable = var, bg = "lavender", fg = "black")
+r2.grid(row = 7, column = 1, ipady = 5)
+r3 = Radiobutton(top, text = 'female', value = 2, variable = var, bg = "lavender", fg = "black")
+r3.grid(row = 7, column = 2, ipady = 5)
 
+r1 = Checkbutton(top, text = 'I accept Terms Of Use & Privacy Policy', bg = "lavender", fg = "black")
+r1.grid(row = 8, column = 1, columnspan = 10, ipady = 5)
 score1 = 0
 score2 = 0
 
@@ -75,11 +96,12 @@ def click(row, col):  # Next players turn
 
 
 def main():  # Main Program
+
     root = Toplevel()  # Window defined
     root.title("Tic-Tac-Toe")
     root.geometry('336x410')
     root.resizable(0, 0)
-    root.iconbitmap("iconn.ico")
+    root.iconbitmap("icon.ico")
     global a
     global b
     global colour
@@ -101,8 +123,8 @@ def main():  # Main Program
     root.mainloop()
 
 
-game_page = Button(top, text = 'SAVE', command = main, font = ("Helvetica", 10, 'bold'),
+game_page = Button(top, text = 'SAVE INFO', command = main, font = ("Helvetica", 10, 'bold'),
                    bg = "dark orchid", fg = "white")
-game_page.grid(row = 8, column = 1)
+game_page.grid(row = 9, column = 1)
 
 top.mainloop()
