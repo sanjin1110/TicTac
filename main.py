@@ -129,6 +129,16 @@ def main():  # Main Program
     root.mainloop()
 
 
+def link():  # save user information in file
+    nam = name_entry1.get()
+    nam2 = name_entry2.get()
+    em = email_entry.get()
+    pw = password_entry.get()
+    with open("abc.txt ", "a") as file_object:
+        file_object.writelines(["player1=" + nam + "\t","player2=" + nam2 + "\t",
+                                "email=" + em + "\t", "password=" + pw + "\t"])
+
+
 game_page = Button(top, text = 'SAVE INFO', command = main, font = ("Helvetica", 10, 'bold'),
                    bg = "dark orchid", fg = "white")
 game_page.grid(row = 9, column = 1)
