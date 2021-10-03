@@ -9,40 +9,37 @@ top.title("Login")
 top.iconbitmap("login.ico")
 top.configure(bg = "lightblue1")
 bef = Label(top, text = 'BEFORE ENTERING THE GAME', font = ("Helvetica", 10, 'bold'),
-            bg = "lightblue1", fg = "indianred2")
-ore = Label(top, text = 'PLEASE MENTION ....', font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "indianred2")
+            bg = "lightblue1", fg = "dark orchid")
+ore = Label(top, text = 'PLEASE MENTION ....', font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
 bef.grid(row = 1, column = 1)
 ore.grid(row = 2, column = 1)
-name = Label(top, text = "Player 1:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+name = Label(top, text = "Player 1:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "indianred2")
 name.grid(row = 3, column = 0, pady = 10)
-name_entry1 = Entry(top, width = 30)
+name_entry1 = Entry(top, width = 26)
 name_entry1.grid(row = 3, column = 1, columnspan = 10, pady = 10)
-name2 = Label(top, text = "Player 2:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+name2 = Label(top, text = "Player 2:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "indianred2")
 name2.grid(row = 4, column = 0)
-name_entry2 = Entry(top, width = 30)
+name_entry2 = Entry(top, width = 26)
 name_entry2.grid(row = 4, column = 1, columnspan = 20)
-email = Label(top, text = "E-mail:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+email = Label(top, text = "E-mail:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "indianred2")
 email.grid(row = 5, column = 0)
-password = Label(top, text = "Password:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+password = Label(top, text = "Password:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "indianred2")
 password.grid(row = 6, column = 0)
-gender = Label(top, text = "Gender:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "dark orchid")
+gender = Label(top, text = "Gender:", font = ("Helvetica", 10, 'bold'), bg = "lightblue1", fg = "indianred2")
 gender.grid(row = 7, column = 0)
-name_entry1 = Entry(top, width = 30)
-name_entry1.grid(row = 3, column = 1, columnspan = 10, pady = 10)
-name_entry2 = Entry(top, width=30)
-name_entry2.grid(row=4, column=1, columnspan = 10, pady = 10)
-email_entry = Entry(top, width = 30)
-email_entry.grid(row = 5, column = 1, columnspan = 10, pady = 10)
-password_entry = Entry(top, width = 30, show ="*")
+email_entry = Entry(top, width = 26)
+email_entry.grid(row = 5, column =1, columnspan = 10, pady = 10)
+password_entry = Entry(top, width = 26, show ="*")
 password_entry.grid(row = 6, column = 1, columnspan = 10, pady = 10)
 var = IntVar()
-r2 = Radiobutton(top, text = 'male', value = 1, variable = var, bg = "lavender", fg = "black")
+r2 = Radiobutton(top, text = 'male', value = 1, variable = var, bg = "lavender", fg = "indianred2")
 r2.grid(row = 7, column = 1, ipady = 5)
-r3 = Radiobutton(top, text = 'female', value = 2, variable = var, bg = "lavender", fg = "black")
+r3 = Radiobutton(top, text = 'female', value = 2, variable = var, bg = "lavender", fg = "indianred2")
 r3.grid(row = 7, column = 2, ipady = 5)
 
 score1 = 0
 score2 = 0
+draw = 0
 
 
 def button(frame):  # Function to define a button
@@ -74,6 +71,7 @@ def reset():  # Resets the game
 def check():  # Checks for victory or Draw
     global score1
     global score2
+    global draw
     for i in range(3):
         if b[i][0]["text"] == b[i][1]["text"] == b[i][2]["text"] == a or b[0][i]["text"] == b[1][i]["text"] \
                 == b[2][i]["text"] == a:
@@ -88,12 +86,15 @@ def check():  # Checks for victory or Draw
         messagebox.showinfo("Congrats!!", "'" + name_entry2.get() + "' has won")
         score2 += 1
         with open("scoreboard.txt ", "a") as file_object:
-            file_object.writelines(name_entry2.get()+" "+"score =" + str(score2) + "\n")
+            file_object.writelines(name_entry2.get()+" "+"score =" + str(score2) + "\t")
 
         reset()
     elif b[0][0]["state"] == b[0][1]["state"] == b[0][2]["state"] == b[1][0]["state"] == b[1][1]["state"] \
             == b[1][2]["state"] == b[2][0]["state"] == b[2][1]["state"] == b[2][2]["state"] == DISABLED:
         messagebox.showinfo("Tied!!", "The match ended in a draw")
+        draw += 1
+        with open("scoreboard.txt ", "a") as file_object:
+            file_object.writelines(" Draw =" + str(draw) + "\n")
         reset()
 
 
@@ -148,10 +149,10 @@ s.grid(row = 9)
 s = Label(top, text = " ", bg = "lightblue1")
 s.grid(row = 11)
 game_page = Button(top, text = 'SAVE INFO', command = link, font = ("Helvetica", 10, 'bold'),
-                   bg = "dark orchid", fg = "white")
+                   bg = "alice blue", fg = "indianred2")
 game_page.grid(row = 10, column = 1)
 game_page = Button(top, text = 'New Game', command = main, font = ("Helvetica", 10, 'bold'),
-                   bg = "dark orchid", fg = "white")
+                   bg = "alice blue", fg = "indianred2")
 game_page.grid(row = 12, column = 1, rowspan=5)
 
 top.mainloop()
